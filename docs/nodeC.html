@@ -28,7 +28,7 @@
       <div class="sidebar-wrapper">
         <div class="logo"><span class="simple-text">Netiquette</span></div>
         <ul class="nav">
-          <li class="nav-item active">
+          <li>
             <span class="nav-link">
               <i class="nc-icon nc-air-baloon"></i>
               <p>Overview</p>
@@ -46,7 +46,7 @@
               <p>Node B</p>
             </a>
           </li>
-          <li>
+          <li class="nav-item active">
             <a href="nodeC.html" class="nav-link">
               <i class="nc-icon nc-atom"></i>
               <p>Node C</p>
@@ -65,7 +65,57 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <div class="section">WIP</div>
+          <!--div class="section"></div-->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card ">
+                <div class="card-header ">
+                  <h4 class="card-title">Battery Voltage</h4>
+                  <p class="card-category">24 Hours performance</p>
+                </div>
+                <div class="card-body ">
+                  <div id="chartVoltage" class="ct-chart"></div>
+                </div>
+                <div class="card-footer ">
+                  <div class="legend">
+                    <i class="fa fa-circle text-info"></i> PV voltage (V)
+                    <i class="fa fa-circle text-danger"></i> Battery voltage (V)
+                    <!--i class="fa fa-circle text-warning"></i> PV power (W)
+                    <i class="fa fa-circle text-warning"></i> Load power (W)-->
+                  </div>
+                  <!--hr>
+                  <div class="stats">
+                    <i class="fa fa-history"></i> Updated 3 minutes ago
+                  </div-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card ">
+                <div class="card-header ">
+                  <h4 class="card-title">Battery Power</h4>
+                  <p class="card-category">24 Hours performance</p>
+                </div>
+                <div class="card-body ">
+                  <div id="chartPower" class="ct-chart"></div>
+                </div>
+                <div class="card-footer ">
+                  <div class="legend">
+                    <!--i class="fa fa-circle text-info"></i> PV voltage (V)
+                    <i class="fa fa-circle text-danger"></i> Battery voltage (V)-->
+                    <i class="fa fa-circle text-info"></i> PV power (W)
+                    <i class="fa fa-circle text-danger"></i> Load power (W)
+                  </div>
+                  <!--hr>
+                  <div class="stats">
+                    <i class="fa fa-history"></i> Updated 3 minutes ago
+                  </div-->
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <footer class="footer">
@@ -100,5 +150,56 @@
 <script src="assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeC/data/voltage.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 20,
+            high: 35,
+            showArea: false,
+            showLine: true,
+            showPoint: false,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartVoltage', data, options, responsive);
+        }
+      }
+    })
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeC/data/power.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 0,
+            high: 80,
+            showArea: false,
+            showLine: true,
+            showPoint: false,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartPower', data, options, responsive);
+        }
+      }
+    })
+  });
+</script>
 
 </html>
