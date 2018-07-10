@@ -40,13 +40,13 @@
               <p>Node A</p>
             </a>
           </li>
-          <li>
+          <li class="nav-item active">
             <a href="nodeB.html" class="nav-link">
               <i class="nc-icon nc-atom"></i>
               <p>Node B</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li>
             <a href="nodeC.html" class="nav-link">
               <i class="nc-icon nc-atom"></i>
               <p>Node C</p>
@@ -71,7 +71,7 @@
               <div class="card">
                 <div class="card-header ">
                   <h4 class="card-title">Disk Space</h4>
-                  <p class="card-category">Disk space on Node C controller</p>
+                  <p class="card-category">Disk space on Node B controller</p>
                 </div>
                 <div class="card-body">
                   <div id="chartDiskHost" class="ct-chart"></div>
@@ -85,7 +85,7 @@
               <div class="card">
                 <div class="card-header ">
                   <h4 class="card-title">Disk Space</h4>
-                  <p class="card-category">Disk space on modem 44</p>
+                  <p class="card-category">Disk space on modem 43</p>
                 </div>
                 <div class="card-body">
                   <div id="chartDiskModem" class="ct-chart"></div>
@@ -101,7 +101,7 @@
               <div class="card">
                 <div class="card-header">
                   <h4 class="card-title">Modem Temperature</h4>
-                  <p class="card-category">24 hour thermal performance of modem 44</p>
+                  <p class="card-category">24 hour thermal performance of modem 43</p>
                 </div>
                 <div class="card-body">
                   <div id="chartTemperature" class="ct-chart"></div>
@@ -114,53 +114,10 @@
               <div class="card">
                 <div class="card-header">
                   <h4 class="card-title">Acoustic Noise</h4>
-                  <p class="card-category">24 hour noise measurements on modem 44</p>
+                  <p class="card-category">24 hour noise measurements on modem 43</p>
                 </div>
                 <div class="card-body">
                   <div id="chartNoise" class="ct-chart"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Battery Voltage</h4>
-                  <p class="card-category">24 hour performance</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartVoltage" class="ct-chart"></div>
-                </div>
-                <div class="card-footer">
-                  <div class="legend">
-                    <i class="fa fa-circle text-info"></i> PV voltage (V)
-                    <i class="fa fa-circle text-danger"></i> Battery voltage (V)
-                    <!--i class="fa fa-circle text-warning"></i> PV power (W)-->
-                  </div>
-                  <!--hr>
-                  <div class="stats">
-                    <i class="fa fa-history"></i> Updated 3 minutes ago
-                  </div-->
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Battery Power</h4>
-                  <p class="card-category">24 hour performance</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartPower" class="ct-chart"></div>
-                </div>
-                <div class="card-footer">
-                  <div class="legend">
-                    <i class="fa fa-circle text-info"></i> PV power (W)
-                    <i class="fa fa-circle text-danger"></i> Load power (W)
-                  </div>
                 </div>
               </div>
             </div>
@@ -203,7 +160,7 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeC/data/df.json',
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/df.json',
       dataType: 'application/json',
       complete: function(data){
         if (data.status == 200) {
@@ -218,7 +175,7 @@
       }
     })
     $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem44/data/df.json',
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem43/data/df.json',
       dataType: 'application/json',
       complete: function(data){
         if (data.status == 200) {
@@ -233,53 +190,7 @@
       }
     })
     $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeC/data/voltage.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 22,
-            high: 28,
-            showArea: false,
-            showLine: true,
-            showPoint: false,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartVoltage', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeC/data/power.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 0,
-            high: 80,
-            showArea: false,
-            showLine: true,
-            showPoint: false,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartPower', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem44/data/temperature.json',
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem43/data/temperature.json',
       dataType: 'application/json',
       complete: function(data){
         if (data.status == 200) {
@@ -303,7 +214,7 @@
       }
     })
     $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem44/data/noise.json',
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem43/data/noise.json',
       dataType: 'application/json',
       complete: function(data){
         if (data.status == 200) {
