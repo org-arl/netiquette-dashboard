@@ -165,6 +165,166 @@
               </div>
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Communications Performance</h4>
+                  <p class="card-category">Node A Control Channel</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartCommsA1" class="ct-chart"></div>
+                </div>
+                <div class="card-footer">
+                  <div class="legend">
+                    <i class="fa fa-circle text-info"></i> Detection probability
+                    <i class="fa fa-circle text-danger"></i> Detection metric
+                    <i class="fa fa-circle text-warning"></i> BER
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Communications Performance</h4>
+                  <p class="card-category">Node A Data Channel</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartCommsA2" class="ct-chart"></div>
+                </div>
+                <div class="card-footer">
+                  <div class="legend">
+                    <i class="fa fa-circle text-info"></i> Detection probability
+                    <i class="fa fa-circle text-danger"></i> Detection metric
+                    <i class="fa fa-circle text-warning"></i> BER
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Communications Performance</h4>
+                  <p class="card-category">Node A Probes</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartCommsA3" class="ct-chart"></div>
+                </div>
+                <div class="card-footer">
+                  <div class="legend">
+                    <i class="fa fa-circle text-info"></i> Detection probability
+                    <i class="fa fa-circle text-danger"></i> Detection metric
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Communications Performance</h4>
+                  <p class="card-category">Node B Control Channel</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartCommsB1" class="ct-chart"></div>
+                </div>
+                <div class="card-footer">
+                  <div class="legend">
+                    <i class="fa fa-circle text-info"></i> Detection probability
+                    <i class="fa fa-circle text-danger"></i> Detection metric
+                    <i class="fa fa-circle text-warning"></i> BER
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Communications Performance</h4>
+                  <p class="card-category">Node B Data Channel</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartCommsB2" class="ct-chart"></div>
+                </div>
+                <div class="card-footer">
+                  <div class="legend">
+                    <i class="fa fa-circle text-info"></i> Detection probability
+                    <i class="fa fa-circle text-danger"></i> Detection metric
+                    <i class="fa fa-circle text-warning"></i> BER
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Communications Performance</h4>
+                  <p class="card-category">Node B Probes</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartCommsB3" class="ct-chart"></div>
+                </div>
+                <div class="card-footer">
+                  <div class="legend">
+                    <i class="fa fa-circle text-info"></i> Detection probability
+                    <i class="fa fa-circle text-danger"></i> Detection metric
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Communications Performance</h4>
+                  <p class="card-category">Node A RSSI</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartRssiA" class="ct-chart"></div>
+                </div>
+                <div class="card-footer">
+                  <div class="legend">
+                    <i class="fa fa-circle text-info"></i> Control
+                    <i class="fa fa-circle text-danger"></i> Data
+                    <i class="fa fa-circle text-warning"></i> Probes
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Communications Performance</h4>
+                  <p class="card-category">Node B RSSI</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartRssiB" class="ct-chart"></div>
+                </div>
+                <div class="card-footer">
+                  <div class="legend">
+                    <i class="fa fa-circle text-info"></i> Control
+                    <i class="fa fa-circle text-danger"></i> Data
+                    <i class="fa fa-circle text-warning"></i> Probes
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
       <footer class="footer">
@@ -326,6 +486,200 @@
         }
       }
     })
+
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem44/data/commsA1.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 0,
+            high: 1,
+            showArea: false,
+            showLine: true,
+            lineSmooth: false,
+            showPoint: true,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartCommsA1', data, options, responsive);
+        }
+      }
+    })
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem44/data/commsA2.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 0,
+            high: 1,
+            showArea: false,
+            showLine: true,
+            lineSmooth: false,
+            showPoint: true,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartCommsA2', data, options, responsive);
+        }
+      }
+    })
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem44/data/commsA3.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 0,
+            high: 1,
+            showArea: false,
+            showLine: true,
+            lineSmooth: false,
+            showPoint: true,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartCommsA3', data, options, responsive);
+        }
+      }
+    })
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem44/data/commsB1.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 0,
+            high: 1,
+            showArea: false,
+            showLine: true,
+            lineSmooth: false,
+            showPoint: true,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartCommsB1', data, options, responsive);
+        }
+      }
+    })
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem44/data/commsB2.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 0,
+            high: 1,
+            showArea: false,
+            showLine: true,
+            lineSmooth: false,
+            showPoint: true,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartCommsB2', data, options, responsive);
+        }
+      }
+    })
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem44/data/commsB3.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 0,
+            high: 1,
+            showArea: false,
+            showLine: true,
+            lineSmooth: false,
+            showPoint: true,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartCommsB3', data, options, responsive);
+        }
+      }
+    })
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem44/data/rssiA.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: -80,
+            high: 0,
+            showArea: false,
+            showLine: true,
+            lineSmooth: false,
+            showPoint: true,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartRssiA', data, options, responsive);
+        }
+      }
+    })
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem44/data/rssiB.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: -80,
+            high: 0,
+            showArea: false,
+            showLine: true,
+            lineSmooth: false,
+            showPoint: true,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartRssiB', data, options, responsive);
+        }
+      }
+    })
+
   });
 </script>
 
