@@ -41,14 +41,14 @@ def process(s):
     if m:
         n = type(m.group(1))
         if n is None: return
-        db['count'][n] = db['count'][n] + 1
+        if db['count'][n] < blksize: db['count'][n] = db['count'][n] + 1
         db['detector'][n].append(float(m.group(2)))
         return
     m = re.match(r'RxFrameNtf.*type:([#A-Z0-9]+) .* ber:(\d+)/(\d+)', s)
     if m:
         n = type(m.group(1))
         if n is None: return
-        db['ber'][n].append(int(m.group(2))/int(m.group(3)))
+        db['ber'][n].append(float(m.group(2))/float(m.group(3)))
         m = re.search(r' rssi:(\-?\d+\.?\d*)', s)
         if m: db['rssi'][n].append(float(m.group(1)))
         return
