@@ -5,4 +5,4 @@ data = nq.read_logs(
     process=lambda t,x: ('%02d'%(t.hour), float(x[0]))
 )
 
-nq.export_json(data, cols=(0,1), filename='data/noise.json')
+nq.export_json(data, cols=(1,2), filename='data/noise.json')

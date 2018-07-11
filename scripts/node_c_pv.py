@@ -6,5 +6,5 @@ data = nq.read_logs(
     process=lambda t,x: ('%02d'%(t.hour),)+nq.csv(x, cols=(2,4,9,11))
 )
 
-nq.export_json(data, cols=(0,1), filename='data/voltage.json')
-nq.export_json(data, cols=(2,3), filename='data/power.json')
+nq.export_json(data, cols=(1,2), filename='data/voltage.json')
+nq.export_json(data, cols=(3,4), filename='data/power.json')

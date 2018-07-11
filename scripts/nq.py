@@ -3,7 +3,7 @@ import sys, re
 import time, pytz, datetime
 import json
 
-def read_logs(max_age=86400, min_gap=0, regex=None, process=None):
+def read_logs(max_age=86400, min_gap=0, regex=None, process=None, epoch=False):
     t0 = time.time()
     last = 0
     data = []
@@ -16,7 +16,7 @@ def read_logs(max_age=86400, min_gap=0, regex=None, process=None):
                 if regex is not None:
                     m1 = re.search(regex, line)
                 if regex is None or m1:
-                    dts = datetime.datetime.fromtimestamp(t, pytz.timezone('Asia/Singapore'))
+                    dts = t if epoch else datetime.datetime.fromtimestamp(t, pytz.timezone('Asia/Singapore'))
                     data1 = m1.groups() if m1 else None
                     data1 = process(dts, data1) if process else (dts,) + data1
                     data.append(data1)
@@ -38,7 +38,7 @@ def export_json(data, cols=None, trim_labels=True, filename=None):
         if len(data[0]) == 2:
             series = [_[1] for _ in data]
         else:
-            series = [[_[j+1] for _ in data] for j in (cols if cols else range(len(data[0])-1))]
+            series = [[_[j] for _ in data] for j in (cols if cols else range(1,len(data[0])))]
         s = json.dumps({'labels': labels, 'series': series})
     if filename is not None:
         with open(filename, 'w') as f:
