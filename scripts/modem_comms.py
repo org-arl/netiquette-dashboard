@@ -39,22 +39,22 @@ def reset():
 def process(s):
     m = re.match(r'RxFrameStartNtf.*type:([#A-Z0-9]+) .* detector:(0.\d+)', s)
     if m:
-        n = type(m[1])
+        n = type(m.group(1))
         if n is None: return
         db['count'][n] = db['count'][n] + 1
-        db['detector'][n].append(float(m[2]))
+        db['detector'][n].append(float(m.group(2)))
         return
     m = re.match(r'RxFrameNtf.*type:([#A-Z0-9]+) .* ber:(\d+)/(\d+)', s)
     if m:
-        n = type(m[1])
+        n = type(m.group(1))
         if n is None: return
-        db['ber'][n].append(int(m[2])/int(m[3]))
+        db['ber'][n].append(int(m.group(2))/int(m.group(3)))
         m = re.search(r' rssi:(\-?\d+\.?\d*)', s)
-        if m: db['rssi'][n].append(float(m[1]))
+        if m: db['rssi'][n].append(float(m.group(1)))
         return
     m = re.match(r'RxBasebandSignalNtf.*rssi:(\-?\d+\.?\d*) .* preamble:3', s)
     if m:
-        db['rssi'][2].append(float(m[1]))
+        db['rssi'][2].append(float(m.group(1)))
         return
 
 def summarize(label):
