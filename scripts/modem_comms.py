@@ -4,7 +4,7 @@ import datetime
 
 quanta = 5
 hours = 24
-blksize = 10
+blksize = 10.0
 
 data = nq.read_logs(
     regex=r'Netiquette.*:: (Rx.*)$',
@@ -22,7 +22,7 @@ def median(l):
     if l is None or len(l) == 0: return None
     half = len(l)//2
     l.sort()
-    return (l[half - 1] + l[half]) / 2.0 if len(l)%2 == 1 else l[half]
+    return (l[half-1]+l[half])/2.0 if len(l)%2 == 1 else l[half]
 
 def type(s):
     if s == 'CONTROL': return 0
@@ -70,7 +70,7 @@ dt = datetime.timedelta(minutes=quanta)
 k = 0
 while k < len(data) and data[k][0] < t:
     k = k + 1
-for j in range(int(60/quanta*hours)):
+for j in range(int(60.0/quanta*hours)):
     ot = t
     t = t + dt
     reset()
