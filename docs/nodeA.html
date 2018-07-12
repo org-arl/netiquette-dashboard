@@ -282,6 +282,85 @@
             </div>
           </div>
 
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Weather Station</h4>
+                  <p class="card-category">Atmospheric pressure (mbar)</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartAtm" class="ct-chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Weather Station</h4>
+                  <p class="card-category">Light intensity (W/m<sup>2</sup>)</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartLight" class="ct-chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Weather Station</h4>
+                  <p class="card-category">Relative humidity (%)</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartRH" class="ct-chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Weather Station</h4>
+                  <p class="card-category">Air temperature (deg C)</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartAirTemp" class="ct-chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Weather Station</h4>
+                  <p class="card-category">Wind speed (m/s)</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartWindSpeed" class="ct-chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Weather Station</h4>
+                  <p class="card-category">Wind direction (bearing)</p>
+                </div>
+                <div class="card-body">
+                  <div id="chartWindDir" class="ct-chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
       <footer class="footer">
@@ -587,6 +666,145 @@
             }]
           ];
           Chartist.Line('#chartRssiC', data, options, responsive);
+        }
+      }
+    })
+
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_atm.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 990,
+            high: 1020,
+            showArea: false,
+            showLine: true,
+            showPoint: false,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartAtm', data, options, responsive);
+        }
+      }
+    })
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_light.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 0,
+            high: 1500,
+            showArea: false,
+            showLine: true,
+            showPoint: false,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartLight', data, options, responsive);
+        }
+      }
+    })
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_rh.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 0,
+            high: 100,
+            showArea: false,
+            showLine: true,
+            showPoint: false,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartRH', data, options, responsive);
+        }
+      }
+    })
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_temp.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 15,
+            high: 40,
+            showArea: false,
+            showLine: true,
+            showPoint: false,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartAirTemp', data, options, responsive);
+        }
+      }
+    })
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_wind_speed.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 0,
+            high: 5,
+            showArea: false,
+            showLine: true,
+            showPoint: false,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartWindSpeed', data, options, responsive);
+        }
+      }
+    })
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_wind_dir.json',
+      dataType: 'application/json',
+      complete: function(data){
+        if (data.status == 200) {
+          data = JSON.parse(data['responseText']);
+          var options = {
+            low: 0,
+            high: 360,
+            showArea: false,
+            showLine: true,
+            showPoint: false,
+            fullWidth: true
+          };
+          var responsive = [
+            ['screen and (max-width: 640px)', {
+              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
+            }]
+          ];
+          Chartist.Line('#chartWindDir', data, options, responsive);
         }
       }
     })
