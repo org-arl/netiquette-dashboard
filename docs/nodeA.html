@@ -1,815 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="assets/img/favicon.ico">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Netiquette Dashboard</title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-  <!-- CSS Files -->
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <!-- link href="assets/css/demo.css" rel="stylesheet" / -->
-</head>
-
-<body>
-  <div class="wrapper">
-    <div class="sidebar" data-color="blue">
-    <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-      Tip 2: you can also add an image using data-image tag
-    -->
-      <div class="sidebar-wrapper">
-        <div class="logo"><span class="simple-text">Netiquette</span></div>
-        <ul class="nav">
-          <li>
-            <span class="nav-link">
-              <i class="nc-icon nc-air-baloon"></i>
-              <p>Overview</p>
-            </span>
-          </li>
-          <li class="nav-item active">
-            <a href="nodeA.html" class="nav-link">
-              <i class="nc-icon nc-atom"></i>
-              <p>Node A</p>
-            </a>
-          </li>
-          <li>
-            <a href="nodeB.html" class="nav-link">
-              <i class="nc-icon nc-atom"></i>
-              <p>Node B</p>
-            </a>
-          </li>
-          <li>
-            <a href="nodeC.html" class="nav-link">
-              <i class="nc-icon nc-atom"></i>
-              <p>Node C</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-        <div class=" container-fluid  ">
-          <a class="navbar-brand" href="http://www.unetstack.net"> UNET Testbed </a>
-        </div>
-      </nav>
-      <!-- End Navbar -->
-      <div class="content">
-        <div class="container-fluid">
-          <!--div class="section"></div-->
-          <div class="row">
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-header ">
-                  <h4 class="card-title">Disk Space</h4>
-                  <p class="card-category">Disk space on Node A controller</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartDiskHost" class="ct-chart"></div>
-                </div>
-                <div class="card-footer">
-                  &nbsp;
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-header ">
-                  <h4 class="card-title">Disk Space</h4>
-                  <p class="card-category">Disk space on modem 42</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartDiskModem" class="ct-chart"></div>
-                </div>
-                <div class="card-footer">
-                  &nbsp;
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Modem Temperature</h4>
-                  <p class="card-category">24 hour thermal performance of modem 42</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartTemperature" class="ct-chart"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Acoustic Noise</h4>
-                  <p class="card-category">24 hour noise measurements on modem 42</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartNoise" class="ct-chart"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Communications Performance</h4>
-                  <p class="card-category">Node B Control Channel</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartCommsB1" class="ct-chart"></div>
-                </div>
-                <div class="card-footer">
-                  <div class="legend">
-                    <i class="fa fa-circle text-info"></i> Detection probability
-                    <i class="fa fa-circle text-danger"></i> Detection metric
-                    <i class="fa fa-circle text-warning"></i> BER
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Communications Performance</h4>
-                  <p class="card-category">Node B Data Channel</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartCommsB2" class="ct-chart"></div>
-                </div>
-                <div class="card-footer">
-                  <div class="legend">
-                    <i class="fa fa-circle text-info"></i> Detection probability
-                    <i class="fa fa-circle text-danger"></i> Detection metric
-                    <i class="fa fa-circle text-warning"></i> BER
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Communications Performance</h4>
-                  <p class="card-category">Node B Probes</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartCommsB3" class="ct-chart"></div>
-                </div>
-                <div class="card-footer">
-                  <div class="legend">
-                    <i class="fa fa-circle text-info"></i> Detection probability
-                    <i class="fa fa-circle text-danger"></i> Detection metric
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Communications Performance</h4>
-                  <p class="card-category">Node C Control Channel</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartCommsC1" class="ct-chart"></div>
-                </div>
-                <div class="card-footer">
-                  <div class="legend">
-                    <i class="fa fa-circle text-info"></i> Detection probability
-                    <i class="fa fa-circle text-danger"></i> Detection metric
-                    <i class="fa fa-circle text-warning"></i> BER
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Communications Performance</h4>
-                  <p class="card-category">Node C Data Channel</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartCommsC2" class="ct-chart"></div>
-                </div>
-                <div class="card-footer">
-                  <div class="legend">
-                    <i class="fa fa-circle text-info"></i> Detection probability
-                    <i class="fa fa-circle text-danger"></i> Detection metric
-                    <i class="fa fa-circle text-warning"></i> BER
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Communications Performance</h4>
-                  <p class="card-category">Node C Probes</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartCommsC3" class="ct-chart"></div>
-                </div>
-                <div class="card-footer">
-                  <div class="legend">
-                    <i class="fa fa-circle text-info"></i> Detection probability
-                    <i class="fa fa-circle text-danger"></i> Detection metric
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Communications Performance</h4>
-                  <p class="card-category">Node B RSSI</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartRssiB" class="ct-chart"></div>
-                </div>
-                <div class="card-footer">
-                  <div class="legend">
-                    <i class="fa fa-circle text-info"></i> Control
-                    <i class="fa fa-circle text-danger"></i> Data
-                    <i class="fa fa-circle text-warning"></i> Probes
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Communications Performance</h4>
-                  <p class="card-category">Node C RSSI</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartRssiC" class="ct-chart"></div>
-                </div>
-                <div class="card-footer">
-                  <div class="legend">
-                    <i class="fa fa-circle text-info"></i> Control
-                    <i class="fa fa-circle text-danger"></i> Data
-                    <i class="fa fa-circle text-warning"></i> Probes
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Weather Station</h4>
-                  <p class="card-category">Atmospheric pressure (mbar)</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartAtm" class="ct-chart"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Weather Station</h4>
-                  <p class="card-category">Light intensity (W/m<sup>2</sup>)</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartLight" class="ct-chart"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Weather Station</h4>
-                  <p class="card-category">Relative humidity (%)</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartRH" class="ct-chart"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Weather Station</h4>
-                  <p class="card-category">Air temperature (deg C)</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartAirTemp" class="ct-chart"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Weather Station</h4>
-                  <p class="card-category">Wind speed (m/s)</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartWindSpeed" class="ct-chart"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Weather Station</h4>
-                  <p class="card-category">Wind direction (bearing)</p>
-                </div>
-                <div class="card-body">
-                  <div id="chartWindDir" class="ct-chart"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+  <head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Netiquette Dashboard</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidebar" data-color="blue">
+        <div class="sidebar-wrapper">
+          <div class="logo"><span class="simple-text">Netiquette</span></div>
+          <div class="nq-navbar"></div>
         </div>
       </div>
-      <footer class="footer">
-        <div class="container">
-          <nav>
-            <p class="copyright text-center">
-              &copy;
-              <script>
-                document.write(new Date().getFullYear())
-              </script>
-              <a href="http://arl.nus.edu.sg">Acoustic Research Laboratory</a>,
-              <a href="http://www.nus.edu.sg">National University of Singapore</a>.
-            </p>
-          </nav>
+      <div class="main-panel">
+        <nav class="navbar navbar-expand-lg" color-on-scroll="500">
+          <div class=" container-fluid">
+            <a class="navbar-brand" href="http://www.unetstack.net"> UNET Testbed </a>
+          </div>
+        </nav>
+          <div class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="nq-chart-card"
+                  data-title="Disk Space"
+                  data-category="Disk space on Node A controller"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/df.json"
+                  data-process="diskfree"
+                  data-chart="pie">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="nq-chart-card"
+                  data-title="Disk Space"
+                  data-category="Disk space on modem 42"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/df.json"
+                  data-process="diskfree"
+                  data-chart="pie">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Modem Temperature"
+                  data-category="24 hour thermal performance of modem 42"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/temperature.json"
+                  data-chart="line"
+                  data-options="low: 20, high: 80, showLine: true, lineSmooth: true, showPoint: false">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Acoustic Noise"
+                  data-category="24 hour noise measurements on modem 42"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/noise.json"
+                  data-chart="line"
+                  data-options="low: -80, high: 0, showLine: true, lineSmooth: true, showPoint: false">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Communications Performance"
+                  data-category="Node B Control Channel"
+                  data-legend="Detection probability, Detection metric, BER"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/commsB1.json"
+                  data-chart="line"
+                  data-options="low: 0, high: 1, showLine: true, lineSmooth: false, showPoint: true">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Communications Performance"
+                  data-category="Node B Data Channel"
+                  data-legend="Detection probability, Detection metric, BER"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/commsB2.json"
+                  data-chart="line"
+                  data-options="low: 0, high: 1, showLine: true, lineSmooth: false, showPoint: true">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Communications Performance"
+                  data-category="Node B Probes"
+                  data-legend="Detection probability, Detection metric"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/commsB3.json"
+                  data-chart="line"
+                  data-options="low: 0, high: 1, showLine: true, lineSmooth: false, showPoint: true">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Communications Performance"
+                  data-category="Node C Control Channel"
+                  data-legend="Detection probability, Detection metric, BER"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/commsC1.json"
+                  data-chart="line"
+                  data-options="low: 0, high: 1, showLine: true, lineSmooth: false, showPoint: true">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Communications Performance"
+                  data-category="Node C Data Channel"
+                  data-legend="Detection probability, Detection metric, BER"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/commsC2.json"
+                  data-chart="line"
+                  data-options="low: 0, high: 1, showLine: true, lineSmooth: false, showPoint: true">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Communications Performance"
+                  data-category="Node C Probes"
+                  data-legend="Detection probability, Detection metric"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/commsC3.json"
+                  data-chart="line"
+                  data-options="low: 0, high: 1, showLine: true, lineSmooth: false, showPoint: true">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Communications Performance"
+                  data-category="Node B RSSI"
+                  data-legend="Control, Data, Probes"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/rssiB.json"
+                  data-chart="line"
+                  data-options="low: -80, high: 0, showLine: true, lineSmooth: false, showPoint: true">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Communications Performance"
+                  data-category="Node C RSSI"
+                  data-legend="Control, Data, Probes"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/rssiC.json"
+                  data-chart="line"
+                  data-options="low: -80, high: 0, showLine: true, lineSmooth: false, showPoint: true">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Weather Station"
+                  data-category="Atmospheric pressure (mbar)"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_atm.json"
+                  data-chart="line"
+                  data-options="low: 990, high: 1020, showLine: true, lineSmooth: true, showPoint: false">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Weather Station"
+                  data-category="Light intensity (W/m<sup>2</sup>)"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_light.json"
+                  data-chart="line"
+                  data-options="low: 0, high: 1500, showLine: true, lineSmooth: true, showPoint: false">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Weather Station"
+                  data-category="Relative humidity (%)"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_rh.json"
+                  data-chart="line"
+                  data-options="low: 0, high: 100, showLine: true, lineSmooth: true, showPoint: false">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Weather Station"
+                  data-category="Air temperature (deg C)"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_temp.json"
+                  data-chart="line"
+                  data-options="low: 15, high: 40, showLine: true, lineSmooth: true, showPoint: false">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Weather Station"
+                  data-category="Wind speed (m/s)"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_wind_speed.json"
+                  data-chart="line"
+                  data-options="low: 0, high: 10, showLine: true, lineSmooth: true, showPoint: false">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Weather Station"
+                  data-category="Wind direction (bearing)"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_wind_dir.json"
+                  data-chart="line"
+                  data-options="low: 0, high: 360, showLine: true, lineSmooth: true, showPoint: false">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </footer>
+        <footer class="footer">
+          <div class="container">
+            <nav>
+              <p class="copyright text-center">
+                &copy;
+                <script>document.write(new Date().getFullYear())</script>
+                <a href="http://arl.nus.edu.sg">Acoustic Research Laboratory</a>,
+                <a href="http://www.nus.edu.sg">National University of Singapore</a>.
+              </p>
+            </nav>
+          </div>
+        </footer>
+      </div>
     </div>
-  </div>
-</body>
-
-<!--   Core JS Files   -->
-<script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="assets/js/core/popper.min.js" type="text/javascript"></script>
-<script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="assets/js/plugins/bootstrap-switch.js"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!--  Chartist Plugin  -->
-<script src="assets/js/plugins/chartist.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="assets/js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/df.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var used = data.series[0]
-          var free = data.series[1]
-          data.labels[0] = 'Free ('+free+' MB)'
-          data.labels[1] = 'Used ('+used+' MB)'
-          data.series = [free, used]
-          Chartist.Pie('#chartDiskHost', data);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/df.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var used = data.series[0]
-          var free = data.series[1]
-          data.labels[0] = 'Free ('+free+' MB)'
-          data.labels[1] = 'Used ('+used+' MB)'
-          data.series = [free, used]
-          Chartist.Pie('#chartDiskModem', data);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/temperature.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 20,
-            high: 80,
-            showArea: false,
-            showLine: true,
-            showPoint: false,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          data.series = [data.series]
-          Chartist.Line('#chartTemperature', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/noise.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: -80,
-            high: 0,
-            showArea: false,
-            showLine: true,
-            showPoint: false,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          data.series = [data.series]
-          Chartist.Line('#chartNoise', data, options, responsive);
-        }
-      }
-    })
-
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/commsB1.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 0,
-            high: 1,
-            showArea: false,
-            showLine: true,
-            lineSmooth: false,
-            showPoint: true,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartCommsB1', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/commsB2.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 0,
-            high: 1,
-            showArea: false,
-            showLine: true,
-            lineSmooth: false,
-            showPoint: true,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartCommsB2', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/commsB3.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 0,
-            high: 1,
-            showArea: false,
-            showLine: true,
-            lineSmooth: false,
-            showPoint: true,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartCommsB3', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/commsC1.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 0,
-            high: 1,
-            showArea: false,
-            showLine: true,
-            lineSmooth: false,
-            showPoint: true,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartCommsC1', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/commsC2.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 0,
-            high: 1,
-            showArea: false,
-            showLine: true,
-            lineSmooth: false,
-            showPoint: true,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartCommsC2', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/commsC3.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 0,
-            high: 1,
-            showArea: false,
-            showLine: true,
-            lineSmooth: false,
-            showPoint: true,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartCommsC3', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/rssiB.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: -80,
-            high: 0,
-            showArea: false,
-            showLine: true,
-            lineSmooth: false,
-            showPoint: true,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartRssiB', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/rssiC.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: -80,
-            high: 0,
-            showArea: false,
-            showLine: true,
-            lineSmooth: false,
-            showPoint: true,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartRssiC', data, options, responsive);
-        }
-      }
-    })
-
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_atm.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 990,
-            high: 1020,
-            showArea: false,
-            showLine: true,
-            showPoint: false,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartAtm', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_light.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 0,
-            high: 1500,
-            showArea: false,
-            showLine: true,
-            showPoint: false,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartLight', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_rh.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 0,
-            high: 100,
-            showArea: false,
-            showLine: true,
-            showPoint: false,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartRH', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_temp.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 15,
-            high: 40,
-            showArea: false,
-            showLine: true,
-            showPoint: false,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartAirTemp', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_wind_speed.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 0,
-            high: 5,
-            showArea: false,
-            showLine: true,
-            showPoint: false,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartWindSpeed', data, options, responsive);
-        }
-      }
-    })
-    $.ajax({
-      url: 'https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_wind_dir.json',
-      dataType: 'application/json',
-      complete: function(data){
-        if (data.status == 200) {
-          data = JSON.parse(data['responseText']);
-          var options = {
-            low: 0,
-            high: 360,
-            showArea: false,
-            showLine: true,
-            showPoint: false,
-            fullWidth: true
-          };
-          var responsive = [
-            ['screen and (max-width: 640px)', {
-              axisX: { labelInterpolationFnc: function(value) { return value[0]; } }
-            }]
-          ];
-          Chartist.Line('#chartWindDir', data, options, responsive);
-        }
-      }
-    })
-
-  });
-</script>
-
+  </body>
+  <script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+  <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <script src="assets/js/plugins/chartist.min.js" type="text/javascript"></script>
+  <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
+  <script src="assets/js/nq-dashboard.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    function diskfree(data) {
+      data.labels = ["Free ("+data.series[1]+" MB)", "Used ("+data.series[0]+" MB)"]
+      data.series = [data.series[1], data.series[0]];
+    }
+  </script>
 </html>
