@@ -41,9 +41,9 @@ for d1 in data:
     if dd is not None and interesting(dd[1], dd[2]):
         history[dd[0]] = d1[0]
         if dd[0] in tracks:
-            tracks[dd[0]].append(dd[1:])
+            tracks[dd[0]].append((dd[2], dd[1]))
         else:
-            tracks[dd[0]] = [dd[1:]]
+            tracks[dd[0]] = [(dd[2], dd[1])]
         if d1[0]-last > 600:
             last = d1[0]
             h1 = [k for k,v in history.iteritems() if v > d1[0]-3600]
