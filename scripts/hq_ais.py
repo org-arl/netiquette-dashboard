@@ -39,13 +39,15 @@ last = data[0][0]
 t0 = time.time()
 for d1 in data:
     dd = decode(d1[1], d1[2])
-    if dd is not None and interesting(dd[1], dd[2]):
-        history[dd[0]] = d1[0]
-        if t0-d1[0] < 3600:
+    if dd is not None:
+        ii = interesting(dd[1], dd[2])
+        if t0-d1[0] < 3600 and (ii or dd[0] in tracks):
             if dd[0] in tracks:
                 tracks[dd[0]].append((dd[2], dd[1]))
             else:
                 tracks[dd[0]] = [(dd[2], dd[1])]
+        if ii:
+            history[dd[0]] = d1[0]
         if d1[0]-last > 600:
             last = d1[0]
             h1 = [k for k,v in history.iteritems() if v > d1[0]-3600]
