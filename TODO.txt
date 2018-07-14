@@ -1,0 +1,14 @@
+TODO:
+
+ ☐ Log transfer to HQ
+ ☐ GPS position data for node C
+ ☐ AIS analysis
+ ☐ ADCP driver
+ ☐ ADCP analysis
+ ✔ JS/HTML refactoring @done (18-07-14 01:12)
+ ✔ Reorganize web page @done (18-07-14 03:18)
+ ☐ Health monitoring and alerts
+
+Someday:
+
+ ☐ SoC analysis for node C
