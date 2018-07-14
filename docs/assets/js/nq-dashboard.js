@@ -2,8 +2,9 @@
 
 var nav = [
   ["nc-air-baloon", "Overview", "index.html"],
-  ["nc-alien-33", "Node A", "nodeA.html"],
-  ["nc-alien-33", "Node B", "nodeB.html"],
+  ["nc-bank", "HQ", "hq.html"],
+  ["nc-square-pin", "Node A", "nodeA.html"],
+  ["nc-square-pin", "Node B", "nodeB.html"],
   ["nc-alien-33", "Node C", "nodeC.html"],
   ["nc-sun-fog-29", "Weather", "weather.html"],
   ["nc-ambulance", "Hygiene", "hygiene.html"]

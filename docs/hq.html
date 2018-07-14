@@ -33,70 +33,36 @@
         </nav>
         <div class="content">
           <div class="container-fluid">
-            <h3>Weather Station</h3>
+            <h3>AIS</h3>
             <div class="row">
               <div class="col-md-12">
                 <div class="nq-chart-card"
-                  data-title="Atmospheric pressure"
-                  data-category="mbar"
-                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_atm.json"
+                  data-title="AIS"
+                  data-category="Ships passing within 1 km radius per hour"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/hq/data/ais.json"
                   data-chart="line"
-                  data-options="low: 990, high: 1020, showLine: true, lineSmooth: true, showPoint: false">
+                  data-options="low: 0, high: 50, showLine: true, lineSmooth: true, showPoint: false">
                 </div>
               </div>
             </div>
+            <h3>Hygiene</h3>
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-6">
                 <div class="nq-chart-card"
-                  data-title="Light intensity"
-                  data-category="W/m<sup>2</sup>"
-                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_light.json"
-                  data-chart="line"
-                  data-options="low: 0, high: 1500, showLine: true, lineSmooth: true, showPoint: false">
+                  data-title="Disk Space"
+                  data-category="Disk space on HQ controller"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/hq/data/df.json"
+                  data-process="diskfree"
+                  data-chart="pie">
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-6">
                 <div class="nq-chart-card"
-                  data-title="Relative humidity"
-                  data-category="%"
-                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_rh.json"
-                  data-chart="line"
-                  data-options="low: 0, high: 100, showLine: true, lineSmooth: true, showPoint: false">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="nq-chart-card"
-                  data-title="Air Temperature"
-                  data-category="deg C"
-                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_temp.json"
-                  data-chart="line"
-                  data-options="low: 15, high: 40, showLine: true, lineSmooth: true, showPoint: false">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="nq-chart-card"
-                  data-title="Wind speed"
-                  data-category="m/s"
-                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_wind_speed.json"
-                  data-chart="line"
-                  data-options="low: 0, high: 10, showLine: true, lineSmooth: true, showPoint: false">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="nq-chart-card"
-                  data-title="Wind Direction"
-                  data-category="deg re North"
-                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_wind_dir.json"
-                  data-chart="line"
-                  data-options="low: 0, high: 360, showLine: true, lineSmooth: true, showPoint: false">
+                  data-title="Disk Space"
+                  data-category="Disk space on HQ data store"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/hq/data/dfDS.json"
+                  data-process="diskfree"
+                  data-chart="pie">
                 </div>
               </div>
             </div>
@@ -123,4 +89,10 @@
   <script src="assets/js/plugins/chartist.min.js" type="text/javascript"></script>
   <script src="assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
   <script src="assets/js/nq-dashboard.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    function diskfree(data) {
+      data.labels = ["Free ("+data.series[1]+" MB)", "Used ("+data.series[0]+" MB)"]
+      data.series = [data.series[1], data.series[0]];
+    }
+  </script>
 </html>

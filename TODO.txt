@@ -2,7 +2,7 @@ TODO:
 
  ☐ Log transfer to HQ
  ☐ GPS position data for node C
- ☐ AIS analysis
+ ✔ AIS analysis @done (18-07-14 19:14)
  ☐ ADCP driver
  ☐ ADCP analysis
  ✔ JS/HTML refactoring @done (18-07-14 01:12)
