@@ -23,42 +23,12 @@
       <div class="main-panel">
         <nav class="navbar navbar-expand-lg" color-on-scroll="500">
           <div class=" container-fluid">
-            <a class="navbar-brand" href="http://www.unetstack.net"> UNET Testbed </a>
+            <span class="navbar-brand"> Netiquette Underwater Networking Testbed @ SJI </span>
           </div>
         </nav>
-          <div class="content">
+        <div class="content">
           <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="nq-chart-card"
-                  data-title="Disk Space"
-                  data-category="Disk space on Node A controller"
-                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/df.json"
-                  data-process="diskfree"
-                  data-chart="pie">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="nq-chart-card"
-                  data-title="Disk Space"
-                  data-category="Disk space on modem 42"
-                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/df.json"
-                  data-process="diskfree"
-                  data-chart="pie">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="nq-chart-card"
-                  data-title="Modem Temperature"
-                  data-category="24 hour thermal performance of modem 42"
-                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/temperature.json"
-                  data-chart="line"
-                  data-options="low: 20, high: 80, showLine: true, lineSmooth: true, showPoint: false">
-                </div>
-              </div>
-            </div>
+            <h3>Acoustic Performance</h3>
             <div class="row">
               <div class="col-md-12">
                 <div class="nq-chart-card"
@@ -166,11 +136,12 @@
                 </div>
               </div>
             </div>
+            <h3>Weather Station</h3>
             <div class="row">
               <div class="col-md-12">
                 <div class="nq-chart-card"
-                  data-title="Weather Station"
-                  data-category="Atmospheric pressure (mbar)"
+                  data-title="Atmospheric pressure"
+                  data-category="mbar"
                   data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_atm.json"
                   data-chart="line"
                   data-options="low: 990, high: 1020, showLine: true, lineSmooth: true, showPoint: false">
@@ -180,8 +151,8 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="nq-chart-card"
-                  data-title="Weather Station"
-                  data-category="Light intensity (W/m<sup>2</sup>)"
+                  data-title="Light intensity"
+                  data-category="W/m<sup>2</sup>"
                   data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_light.json"
                   data-chart="line"
                   data-options="low: 0, high: 1500, showLine: true, lineSmooth: true, showPoint: false">
@@ -191,8 +162,8 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="nq-chart-card"
-                  data-title="Weather Station"
-                  data-category="Relative humidity (%)"
+                  data-title="Relative humidity"
+                  data-category="%"
                   data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_rh.json"
                   data-chart="line"
                   data-options="low: 0, high: 100, showLine: true, lineSmooth: true, showPoint: false">
@@ -202,8 +173,8 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="nq-chart-card"
-                  data-title="Weather Station"
-                  data-category="Air temperature (deg C)"
+                  data-title="Air Temperature"
+                  data-category="deg C"
                   data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_temp.json"
                   data-chart="line"
                   data-options="low: 15, high: 40, showLine: true, lineSmooth: true, showPoint: false">
@@ -213,8 +184,8 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="nq-chart-card"
-                  data-title="Weather Station"
-                  data-category="Wind speed (m/s)"
+                  data-title="Wind speed"
+                  data-category="m/s"
                   data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_wind_speed.json"
                   data-chart="line"
                   data-options="low: 0, high: 10, showLine: true, lineSmooth: true, showPoint: false">
@@ -224,11 +195,43 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="nq-chart-card"
-                  data-title="Weather Station"
-                  data-category="Wind direction (bearing)"
+                  data-title="Wind Direction"
+                  data-category="deg re North"
                   data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/weather_wind_dir.json"
                   data-chart="line"
                   data-options="low: 0, high: 360, showLine: true, lineSmooth: true, showPoint: false">
+                </div>
+              </div>
+            </div>
+            <h3>Hygiene</h3>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="nq-chart-card"
+                  data-title="Disk Space"
+                  data-category="Disk space on Node A controller"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/nodeA/data/df.json"
+                  data-process="diskfree"
+                  data-chart="pie">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="nq-chart-card"
+                  data-title="Disk Space"
+                  data-category="Disk space on modem 42"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/df.json"
+                  data-process="diskfree"
+                  data-chart="pie">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="nq-chart-card"
+                  data-title="Modem Temperature"
+                  data-category="24 hour thermal performance of modem 42"
+                  data-url="https://raw.githubusercontent.com/org-arl/netiquette-dashboard/modem42/data/temperature.json"
+                  data-chart="line"
+                  data-options="low: 20, high: 80, showLine: true, lineSmooth: true, showPoint: false">
                 </div>
               </div>
             </div>
