@@ -1,5 +1,5 @@
 from __future__ import print_function
-import math, sys, json, datetime, pytz
+import math, sys, json, time, datetime, pytz
 import ais
 import nq
 
@@ -12,7 +12,7 @@ def interesting(lon1, lat1):
     x = (lon2-lon1)*math.pi/180 * math.cos(0.5*(lat2+lat1)*math.pi/180)
     y = (lat2-lat1)*math.pi/180
     d = R * math.sqrt(x*x + y*y)
-    return d < 3
+    return d < 1
 
 def decode(s1, s2):
     try:
@@ -36,14 +36,16 @@ history = {}
 tracks = {}
 counts = []
 last = data[0][0]
+t0 = time.time()
 for d1 in data:
     dd = decode(d1[1], d1[2])
     if dd is not None and interesting(dd[1], dd[2]):
         history[dd[0]] = d1[0]
-        if dd[0] in tracks:
-            tracks[dd[0]].append((dd[2], dd[1]))
-        else:
-            tracks[dd[0]] = [(dd[2], dd[1])]
+        if t0-d1[0] < 3600:
+            if dd[0] in tracks:
+                tracks[dd[0]].append((dd[2], dd[1]))
+            else:
+                tracks[dd[0]] = [(dd[2], dd[1])]
         if d1[0]-last > 600:
             last = d1[0]
             h1 = [k for k,v in history.iteritems() if v > d1[0]-3600]
