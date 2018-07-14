@@ -19,7 +19,8 @@ def read_logs(max_age=86400, min_gap=0, regex=None, process=None, epoch=False):
                     dts = t if epoch else datetime.datetime.fromtimestamp(t, pytz.timezone('Asia/Singapore'))
                     data1 = m1.groups() if m1 else None
                     data1 = process(dts, data1) if process else (dts,) + data1
-                    data.append(data1)
+                    if data1 is not None:
+                        data.append(data1)
                     last = t
     return data
 
