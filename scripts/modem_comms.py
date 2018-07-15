@@ -65,6 +65,7 @@ def summarize(label):
     return d
 
 t = data[0][0]
+t = datetime.datetime.now(t.tzinfo) - datetime.timedelta(hours=hours, minutes=quanta)
 t = datetime.datetime(t.year, t.month, t.day, t.hour, quanta*(t.minute//quanta), 0, 0, t.tzinfo)
 dt = datetime.timedelta(minutes=quanta)
 k = 0
